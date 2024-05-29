@@ -347,11 +347,12 @@ span.link-nav{
 
 
 
-
-
+/**
+* Páignación de la página de proximos eventos
+*/
 .pagination {
-    margin-top: 20px;
-    text-align: center;
+    margin-top: 30px;
+    text-align: right;
 }
 
 .pagination a {

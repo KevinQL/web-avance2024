@@ -105,7 +105,9 @@ add_shortcode('btn_color', 'bn_cambiar_color_pagina');
 
 
 /**
+ * [SHORTCODE]
  * 
+ * Imprime los post de agenda y actividades conforme el diseño pasado en el canva
  * 
  */
 function shortcode_agenda_actividades($atts) {
@@ -135,13 +137,13 @@ function shortcode_agenda_actividades($atts) {
     ob_start();
 
     if ($query->have_posts()) {
-        
+
         echo '<div class="posts-timeline">';
 
         while ($query->have_posts()) {
             $query->the_post();
             /**
-             * get_the_excerpt() get_permalink() get_the_title()
+             * get_the_excerpt()
              */
             //obtiene la img del ultimo post de evento y agenda
             $url_img_portada = get_the_post_thumbnail_url();
@@ -173,6 +175,7 @@ function shortcode_agenda_actividades($atts) {
 
         echo '</div>';
 
+        
         // Paginación
         $big = 999999999; // Un número grande para el reemplazo en paginate_links
         $pagination = paginate_links(array(
@@ -182,6 +185,8 @@ function shortcode_agenda_actividades($atts) {
             'total' => $query->max_num_pages,
             'prev_text' => __('&laquo; Anterior'),
             'next_text' => __('Siguiente &raquo;'),
+            'end_size' => 1,
+            'mid_size' => 1,
         ));
 
         if ($pagination) {
@@ -203,6 +208,8 @@ add_shortcode('agenda_actividades', 'shortcode_agenda_actividades');
 
 
 /**
+ * [FUNCTION]
+ * 
  * Obtiene un extracto de longitud específica.
  *
  * @param int $length Longitud del extracto en caracteres.
