@@ -103,11 +103,53 @@ add_shortcode('img-ultimaportada', 'obtener_ultima_img_post');
 add_shortcode('btn_color', 'bn_cambiar_color_pagina');
 
 
+/**
+ * [SHORTCODE]
+ * 
+ * Retorna los detalles del evento de cada post
+ * Se utiliza en cada uno de los POST de la categoria de  "Agenda y eventos"
+ * 
+ */
+function shortcode_print_title_agenda_actividades(){
+    ob_start();
+    ?>
+        <div>
+            <!-- <h3>DETALLES DEL EVENTO</h3> -->
+            <div>
+                <div class="card-detalle">
+                    <span class="card-detalle_titulo">fecha: </span> 
+                    <span class="card-detalle_value">20 de Enero del 2024</span>
+                </div>
+                <div class="card-detalle">
+                    <span class="card-detalle_titulo">Hora: </span> 
+                    <span class="card-detalle_value">14:00 - 20:00</span>
+                </div>
+                <div class="card-detalle">
+                    <span class="card-detalle_titulo">Lugar: </span> 
+                    <span class="card-detalle_value">Ccoyahuacho - Auditorio Central</span>
+                </div>
+                <div class="card-detalle">
+                    <span class="card-detalle_titulo">Inversión: </span> 
+                    <span class="card-detalle_value">Ingreso Libre, previo registro</span>
+                </div>
+                <div class="card-detalle">
+                    <span class="card-detalle_titulo">Dirigido a: </span> 
+                    <span class="card-detalle_value">Público en General</span>
+                </div>
+            </div>
+        </div>
+    <?php
+    // Devolver el contenido generado
+    return ob_get_clean();
+}
+add_shortcode('print_text_agenda', 'shortcode_print_title_agenda_actividades');
+
 
 /**
  * [SHORTCODE]
  * 
  * Imprime los post de agenda y actividades conforme el diseño pasado en el canva
+ * Se utiliza en la pagina principal de "agenda y actividades"
  * 
  */
 function shortcode_agenda_actividades($atts) {
@@ -727,14 +769,14 @@ function html_navegacion_principal_mobile(){
     html_nav();
     ?>
     <script>
+        //Permite Desglosar las opciones del submenu, sin redireccionarlo a otra página. 
         let btndrops = document.querySelectorAll("span.link-nav");
-
         if(btndrops){
             if(window.innerWidth < 920){
-                console.log("ancho del pg: ", window.innerWidth);
+                // console.log("ancho del pg: ", window.innerWidth);
                 btndrops.forEach(btndrop => {
                     btndrop.addEventListener("click",function () {
-                        console.log("test console click")
+                        // console.log("test console click")
                         let dc = btndrop.nextElementSibling;
                         dc.classList.toggle("vermas");
                     })

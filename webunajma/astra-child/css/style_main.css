@@ -486,3 +486,31 @@ span.link-nav{
         text-align: center;
     }
 }
+
+
+
+
+
+
+
+/***
+*
+*/
+.card-detalle {
+    background: whitesmoke;
+    padding: 4px 10px;
+    margin-bottom: 3px;
+}
+
+span.card-detalle_titulo {
+    background: white;
+    width: 150px;
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: large;
+    font-style: italic;
+    font-weight: bolder;
+    font-family: monospace;
+    border: none;
+    border-radius: 6px;
+}
