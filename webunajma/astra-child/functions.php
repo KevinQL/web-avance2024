@@ -98,9 +98,61 @@ add_shortcode('nav_pagina_unajma','html_navegacion_principal_desktop');
 add_shortcode('print-carrusel-img-arr', 'print_carrusel_img_enlaces_arr');
 
 add_action('uagb_single_post_after_meta_timeline', 'atr_modificar_texto',10,2);
-add_shortcode('img-ultimaportada', 'obtener_ultima_img_post');
+add_action('wp_footer', 'obtener_ultima_img_post_v2');
 
 add_shortcode('btn_color', 'bn_cambiar_color_pagina');
+
+
+
+function fn_nombre_organizador(){
+
+        ob_start();
+
+        ?>  
+            <p>
+                <?= the_field('organizado_por'); ?>
+            </p>
+        <?php
+
+        // Capturar el contenido generado
+        $contenido = ob_get_clean();
+    
+        // Devolver el contenido generado
+        return $contenido;
+}
+add_shortcode('nombre-organizador', 'fn_nombre_organizador');
+
+
+function print_title_action(){
+
+    //obtiene la img de la portada del post
+    $url_img_portada = get_the_post_thumbnail_url();
+    $img_srcset = "$url_img_portada, $url_img_portada 780w,$url_img_portada 360w";            
+    
+    ?>
+        <script>
+            // cambia titulo del post
+            let title_html = document.querySelector(".title-post-event .uagb-heading-text");
+            title_html.innerHTML = "<?= the_title(); ?>";
+
+            // cambia imagen del post
+            let img_html = document.querySelector("figure img");
+            img_html.srcset = '<?= $img_srcset ?>';
+            img_html.src = '<?= $url_img_portada ?>';
+
+            // verificar recurso descarga! y coloca link de ACF, e imprime texto de recurso disponible o no!
+            let link_recurso = '<?= the_field("link_recurso"); ?>'; 
+            let text_resource = "No hay archivos disponibles!!";  //
+            if( link_recurso.length >= 5 ){
+                document.querySelector(".icon-folder-event a").href = link_recurso;
+                text_resource = "Archivos disponibles!!";
+            }
+            document.querySelector(".icon-folder-event p.uagb-ifb-desc").innerHTML = text_resource;
+
+        </script>
+        
+    <?php
+}
 
 
 /**
@@ -111,38 +163,53 @@ add_shortcode('btn_color', 'bn_cambiar_color_pagina');
  * 
  */
 function shortcode_print_title_agenda_actividades(){
+
     ob_start();
     ?>
         <div>
             <!-- <h3>DETALLES DEL EVENTO</h3> -->
-            <div>
+            <div class="card-detalles-evento">
                 <div class="card-detalle">
                     <span class="card-detalle_titulo">fecha: </span> 
-                    <span class="card-detalle_value">20 de Enero del 2024</span>
+                    <span class="card-detalle_value"><?php the_field('fecha_evento'); ?></span>
                 </div>
                 <div class="card-detalle">
                     <span class="card-detalle_titulo">Hora: </span> 
-                    <span class="card-detalle_value">14:00 - 20:00</span>
+                    <span class="card-detalle_value"><?php the_field('lugar_evento'); ?></span>
                 </div>
                 <div class="card-detalle">
                     <span class="card-detalle_titulo">Lugar: </span> 
-                    <span class="card-detalle_value">Ccoyahuacho - Auditorio Central</span>
+                    <span class="card-detalle_value"><?php the_field('hora_evento'); ?></span>
                 </div>
                 <div class="card-detalle">
                     <span class="card-detalle_titulo">Inversión: </span> 
-                    <span class="card-detalle_value">Ingreso Libre, previo registro</span>
+                    <span class="card-detalle_value"><?php the_field('inversion_evento'); ?></span>
                 </div>
                 <div class="card-detalle">
                     <span class="card-detalle_titulo">Dirigido a: </span> 
-                    <span class="card-detalle_value">Público en General</span>
+                    <span class="card-detalle_value"><?php the_field('dirigido_a_evento'); ?></span>
+                </div>
+                
+                <div>
+                    <input type="hidden" id="txt_link_evento" name="link_evento" value="<?php the_field('link_evento'); ?>">
+                    <input type="hidden" id="txt_contacto_evento" name="contacto_evento" value="<?php the_field('contacto_evento'); ?>">
                 </div>
             </div>
         </div>
+
+
     <?php
+    // Capturar el contenido generado
+    $contenido = ob_get_clean();
+
+    // Agregando linnk
+    add_action('wp_footer', 'print_title_action');
+
     // Devolver el contenido generado
-    return ob_get_clean();
+    return $contenido;
 }
 add_shortcode('print_text_agenda', 'shortcode_print_title_agenda_actividades');
+
 
 
 /**
@@ -409,13 +476,14 @@ function obtener_extracto_personalizado($length = 350) {
  * [ADD_SHORTCODE]
  * 
  * Función boton ára cambiar color
- *  Boton de prueba para la función de cambiar color a la página 
+ * Boton de prueba para la función de cambiar color a la página 
  * 
- */
+ */ 
 function bn_cambiar_color_pagina(){
     ?>
         <button class="button-color" onclick="ejecuta()">CAMBIAR COLORES</button>
     <?php
+    return null;
 }
 // add_shortcode('btn_color', 'bn_cambiar_color_pagina');
 
@@ -446,24 +514,23 @@ function atr_modificar_texto($post_id, $post){
     echo $contenido;
 }
 // add_action('uagb_single_post_after_meta_timeline', 'atr_modificar_texto',10,2);
-
+add_action('uagb_single_post_before_title_grid', 'atr_modificar_texto',10,2);
 
 
 /**
- * [ADD_SHORTCODE]
+ * [ADD_ACTION]
  * 
  * Obtener y reemplazar la ultima imagen del post de EVENTOS Y AGENDAS
  * 
  * Para que funcione este shortcode, se establece una clase al contenedor de la imagen. De manera que a partir de ahí se puede capturar a la imagen y realizar el reemplazo correspondiente
  * 
  */
-function obtener_ultima_img_post( $atts ){
+function obtener_ultima_img_post_v2(){
 
-    // Establece los atributos predeterminados del shortcode
-    $atts = shortcode_atts( array(
-        'categoria' => '', // El slug de la categoría
-    ), $atts );
-
+    // Establece los atributos predeterminados
+    $atts = array(
+        'categoria' => 'agenda-actividades', // El slug de la categoría
+    );
     // Argumentos para la consulta del post
     $args = array(
         'category_name' => $atts['categoria'], // El slug de la categoría
@@ -491,13 +558,17 @@ function obtener_ultima_img_post( $atts ){
             
             ?>
             <script>
-                window.onload = function() {
-                    let divimg = document.querySelector('.img-actividad');
-                    if(divimg){
-                        divimg.querySelector("img").srcset = '<?= $img_srcset ?>';
-                        divimg.querySelector("img").src = '<?= $url_img_portada ?>';
-                    }
-                };
+                // dont work here. Averiguar por qué!!!??
+                // window.onload = function() {
+                // }
+                console.log("neuvo action imagen 2")
+                let divimg = document.querySelector('.img-actividad');
+                console.log(divimg)
+                if(divimg){
+                    divimg.querySelector("img").srcset = '<?= $img_srcset ?>';
+                    divimg.querySelector("img").src = '<?= $url_img_portada ?>';
+                }
+                
             </script>
             <?php
         }
@@ -511,9 +582,7 @@ function obtener_ultima_img_post( $atts ){
         <?php
     }
 }
-// add_shortcode('img-ultimaportada', 'obtener_ultima_img_post');
-// Uso con shotcode: [img-ultimaportada categoria="agenda-actividades"]
-
+// add_action('wp_footer', 'obtener_ultima_img_post_v2');
 
 
 /**
@@ -775,7 +844,7 @@ function html_navegacion_principal_mobile(){
             if(window.innerWidth < 920){
                 // console.log("ancho del pg: ", window.innerWidth);
                 btndrops.forEach(btndrop => {
-                    btndrop.addEventListener("click",function () {
+                    btndrop.addEventListener("click", function () {
                         // console.log("test console click")
                         let dc = btndrop.nextElementSibling;
                         dc.classList.toggle("vermas");

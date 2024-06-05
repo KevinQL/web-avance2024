@@ -1,5 +1,4 @@
 
-
 /*
  * Estilos para el boton flotante para cambiar colores de la página
  *
@@ -41,7 +40,9 @@
     display:inline-block; 
     font-size:small; 
     font-weight:400;
+    margin: 10px 10px 13px 10px;;
 }
+
 
 .div-fecha-evento span{
     display: block;
@@ -476,6 +477,7 @@ span.link-nav{
         max-height: none; /* Eliminar la restricción de altura máxima */
     }
 
+
     .div-fecha-evento.div-fecha-evento__proximos_eventos{
         display: block;
         width: 100%;
@@ -484,6 +486,7 @@ span.link-nav{
         padding: 17px 10px;
         border-radius: 8px 8px 0 0;
         text-align: center;
+        /* margin:20px; */
     }
 }
 
@@ -491,9 +494,9 @@ span.link-nav{
 
 
 
-
-
 /***
+* Estilos para el post de agenda y actividades. 
+* 
 *
 */
 .card-detalle {
@@ -504,7 +507,7 @@ span.link-nav{
 
 span.card-detalle_titulo {
     background: white;
-    width: 150px;
+    width: 135px;
     display: inline-block;
     padding: 8px 14px;
     font-size: large;
@@ -513,4 +516,28 @@ span.card-detalle_titulo {
     font-family: monospace;
     border: none;
     border-radius: 6px;
+}
+
+/* Media query para dispositivos con un ancho máximo de 920px */
+@media screen and (max-width: 920px) {
+
+
+    span.card-detalle_titulo {
+        font-weight: lighter;
+        display: block;
+        font-size: medium;
+        font-style: normal;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    span.card-detalle_value {
+        font-size: .9rem;
+        font-family: serif;
+        font-weight: 500;
+        padding: 1px 3px 10px 20px;
+        display: block;
+    }
 }

@@ -18,8 +18,6 @@ console.log("ejecutando scripts main");
     }
 
 
-
-
 window.onload = function() {
 
     /**
@@ -137,8 +135,30 @@ window.onload = function() {
     }
 
 
+    /**
+     * ***********************************************************************
+     * ***********************************************************************
+     * Scripts para el post de AGENDA Y EVENTOS
+     * Coloca las href de los botones de inscribir y contactar
+     * 
+     * ***********************************************************************
+     * ***********************************************************************
+     * 
+    */
+    let el = document.querySelector(".card-detalles-evento")
 
+    if(el){
+        console.log("probandooo actualizar linkss333");
+        let btn_inscribirme = document.querySelector(".btn_inscribirme a");
+        let btn_contactar = document.querySelector(".btn_contactar a"); 
 
+        let txt_link_evento =  document.querySelector("#txt_link_evento").value; 
+        let txt_contacto_evento = document.querySelector("#txt_contacto_evento").value; 
+    
+        btn_inscribirme.href = txt_link_evento;
+        btn_contactar.href = "https://wa.me/51"+txt_contacto_evento;
+
+    }
 
 
 // FIN CODIGO--------------------
