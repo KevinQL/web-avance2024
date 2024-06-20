@@ -40,8 +40,18 @@
     display:inline-block; 
     font-size:small; 
     font-weight:400;
-    margin: 10px 10px 13px 10px;;
+    margin: 10px 10px 13px 10px;
 }
+
+/**
+* Estilos para el widget aside. Publicaciones que salen al costado derecho de la página
+*/
+aside.widget .div-fecha-evento{
+    display: block;
+    text-align: center;
+    background-color: #F58634;
+}
+
 
 
 .div-fecha-evento span{
@@ -158,14 +168,14 @@
 
 .link-nav, .column-link{
     text-align: center;
-	  font-family: "Poppins", sans-serif;
+	font-family: "Poppins", sans-serif;
     font-size: 15px;
-	  font-weight: 400;
+	font-weight: 400;
     color: #1D2130;
     display: block;
     padding: 14px 16px;
     text-decoration: none;
-		/*Esto permite que el contenido del submenú se mantenga por debajo de la imagen logo de la universdad*/			
+	/*Esto permite que el contenido del submenú se mantenga por debajo de la imagen logo de la universdad*/			
     line-height:104px;
 }
 
@@ -177,7 +187,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #e8e8e8;
+    background-color: #F0F5FA;
     width: 100%;
     left: 0;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -190,14 +200,22 @@
 .dropdown-content .header {
     background: #334E96;
     padding: 16px;
-	  border-radius: 4px;
+	border-radius: 4px;
     color: white;
+}
+
+.dropdown-content .header h3{
+    color:white;
 }
 
 span.link-nav{
     cursor: pointer;
 }
 
+.link-nav .fa-arrow-circle-down {
+    font-size: small;
+    color: #373737;
+}
 
 
 @media screen and (min-width: 920px) {
@@ -217,16 +235,34 @@ span.link-nav{
     padding: 10px;
 }
 
+.column h5{
+    color: black;
+    border-bottom: 1px solid #333;
+    margin: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+.column a i{
+    font-size: 12px;
+    margin-right: 4px;
+    color: #1D2130;
+}
+
 .column a {
-    color: #666666;
+    color: #1D2130;
     padding: 14px;
     text-decoration: none;
     display: block;
     text-align: left;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .column a:hover {
-    background-color: #ddd;
+    background-color: #d2e5f7;
+    color: #111111;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -308,7 +344,7 @@ span.link-nav{
     display: block;
 } */
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+/* Responsive layout */
 @media screen and (max-width: 920px) {
 
     /*Esta clas edebe de ir despúes, para poder configurar adecuadamente el display. Dejarlo donde restá.*/
@@ -540,4 +576,173 @@ span.card-detalle_titulo {
         padding: 1px 3px 10px 20px;
         display: block;
     }
+}
+
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+******************** Estilos para los post individales de Noticia **************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+
+.data-notice{
+    text-align: center;
+    /* font-family: "Alegreya Sans SC"; */
+    text-transform: capitalize;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.data-notice .separator-notice{
+    border-top-style: solid;
+    border-top-width: 2px;
+    width: 12%;
+    border-color: var(--ast-global-color-6);
+    margin-bottom: 15px;
+
+    font-size: 0;
+    border-top-style: solid;
+    display: inline-block;
+    margin: 0 0 10px 0;
+}
+
+
+/* Estilo básico para el contenedor del texto */
+.content-notice.post-content {   
+    padding: 20px 30px; /* Añade un poco de espacio alrededor del contenido */
+    padding-bottom: 0; /* Añade un poco de espacio alrededor del contenido parte bottom */
+    line-height: 2; /* Aumenta el espaciado entre líneas para una lectura más cómoda */
+    font-size: 18px; /* Tamaño de fuente adecuado para la lectura */
+    color: #333; /* Color de texto oscuro para un buen contraste */
+    background-color: #f9f9f9; /* Fondo claro para reducir la fatiga visual */
+    border-radius: 8px; /* Bordes redondeados para un aspecto más suave */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade una sombra ligera para destacar el contenedor */
+    font-weight: 350;
+}
+
+/* Estilo para los párrafos */
+.content-notice.post-content p {
+    margin-bottom: 1.5em; /* Espaciado adecuado entre párrafos */
+    text-align: justify; /* Justifica el texto para un borde limpio en ambos lados */
+}
+
+/* Estilo para los encabezados dentro del post */
+.content-notice.post-content h2, .content-notice.post-content h3, .content-notice.post-content h4 {
+    margin-top: 1.5em; /* Espaciado superior para separar secciones */
+    margin-bottom: 0.5em; /* Espaciado inferior para separar del siguiente contenido */
+    color: #0056b3; /* Color diferente para los encabezados */
+    font-weight: bold; /* Resalta los encabezados */
+}
+
+/* Estilo para las listas */
+.content-notice.post-content ul, .content-notice.post-content ol {
+    margin: 1em 0; /* Espaciado superior e inferior */
+    padding-left: 1.5em; /* Sangría para las listas */
+}
+
+/* Estilo para los enlaces */
+.content-notice.post-content a {
+    text-decoration: none !important; /* Sin subrayado por defecto */
+    display: inline-block;
+    background: #334e96;
+    color: white;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: small;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all .8s;
+}
+.content-notice.post-content a:hover{
+    background-color: black;
+}
+
+.content-notice.post-content a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
+/* Estilo para las imágenes */
+.content-notice.post-content img {
+    max-width: 100%; /* Asegura que las imágenes no superen el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de las imágenes */
+    display: block; /* Centra las imágenes */
+    margin: 1.5em auto; /* Espaciado superior e inferior y centrado automático */
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 920px) {
+    .content-notice.post-content {
+        padding: 10px; /* Reduce el padding en pantallas más pequeñas */
+        font-size: 16px; /* Reduce el tamaño de la fuente para mejor legibilidad en móviles */
+    }
+
+    .content-notice.post-content h2, .content-notice.post-content h3, .content-notice.post-content h4 {
+        margin-top: 1em; /* Reduce el margen superior */
+        margin-bottom: 0.5em; /* Reduce el margen inferior */
+    }
+
+    .content-notice.post-content p {
+        margin-bottom: 1em; /* Reduce el margen inferior entre párrafos */
+    }
+
+    .content-notice.post-content ul, .content-notice.post-content ol {
+        margin: 1em 0; /* Reduce el margen superior e inferior para listas */
+        padding-left: 1em; /* Reduce la sangría de las listas */
+    }
+}
+
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************* Estilos para plantilla COMUNICADOS *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+
+.content-btn-comunicados{
+    padding: 25px 10px;
+    border: 1px outset #334d965d;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 8px;
+}
+
+div.content-btn-comunicados a.btn-comunicados{
+    border: none;
+    padding: 14px 35px;
+    display: inline-block;
+    width: 320px;
+    text-align: center;
+    text-transform: capitalize;
+    border-radius: 8px;
+    
+    text-decoration: none;
+    background-color: #334e96;
+    color: white;
+
+    transition: all .8s;
+}
+
+div.content-btn-comunicados a.btn-comunicados:hover{
+    background-color: black;
+}
+
+.btn-comunicados span{
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.btn-comunicados p{
+    margin: 0;
+    font-size: 14px;
 }
