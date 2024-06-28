@@ -387,25 +387,35 @@ span.link-nav{
 /**
 * Páignación de la página de proximos eventos
 */
-.pagination {
+div.pagination-agenda {
     margin-top: 30px;
     text-align: right;
 }
 
-.pagination a {
-    padding: 8px 12px;
-    margin: 0 4px;
-    background-color: #F58634;
-    color: #fff;
+div.pagination-agenda a.page-numbers, span.page-numbers {
+    padding: 9px 10px;
+    margin: 0;
     text-decoration: none;
+    border-radius: 8px;
+    background-color: transparent;
 }
 
-.pagination .current {
+div.pagination-agenda a.page-numbers{
+    border: 2px solid #334e96;
+    color: #334e96;
+}
+
+div.pagination-agenda span.current{
+    border: 2px solid #f58634;
+    color: #f58634;
+}
+
+/* div.pagination-agenda .current {
     padding: 8px 12px;
     margin: 0 4px;
     background-color: #333;
     color: #fff;
-}
+} */
 
 
 
@@ -745,4 +755,78 @@ div.content-btn-comunicados a.btn-comunicados:hover{
 .btn-comunicados p{
     margin: 0;
     font-size: 14px;
+}
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************* Estilos para Misión visión *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+
+.parrafo-to-mision-vision{
+	line-height:2;
+	word-spacing: 2px;
+	background-color: #f0f5fa;
+	font-style: normal;
+	font-weight: 100;
+	font-size: 18px;
+	padding: 16px 24px;
+	border: none;
+	border-radius: 8px;
+
+    background-color: #f9f9f9; /* Fondo claro para reducir la fatiga visual */
+    color: #333; /* Color de texto oscuro para un buen contraste */
+}
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************* Estilos para Rendición de cuentas *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+
+figure.wp-block-table{
+	border-radius: 10px;
+}
+
+figure.wp-block-table table thead{
+	background-color: #333;
+    color: white;
+}
+
+figure.wp-block-table table tbody{
+	font-size: 17px;
+    font-weight: 200;
+    font-style: normal;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 2;
+    word-spacing: 1.4px;
+}
+
+figure.wp-block-table table tbody tr td a{
+    text-decoration: none!important;
+    background-color: #222;
+    padding: 8px 14px;
+    border-radius: 4px;
+    color: whitesmoke;
+    display: inline-block;
+    text-align: center;
+	border: 1px solid transparent;
+    font-size: medium;
+    transition: all .8s;
+}
+
+figure.wp-block-table table tbody tr td a:hover{
+	background-color: #eee;
+	color: black;
+	font-weight: 300;
+	border: 1px solid #222;
 }

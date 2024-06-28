@@ -111,6 +111,41 @@ add_shortcode('btn_color', 'bn_cambiar_color_pagina');
 /**
 ********************************************************************************************
 ********************************************************************************************
+***************************** para la pagina ORGANIGRAMA  **********************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+
+function shortcode_embed_pdf($atts) {
+    // Establece los atributos predeterminados del shortcode
+    $atts = shortcode_atts(
+        array(
+            'url' => 'https://localhost.localdomain/wp-content/uploads/2024/06/organigrama-2023.pdf', // La URL del PDF
+            'width' => '100%', // Ancho del PDF embebido
+            'height' => '900px', // Alto del PDF embebido
+        ), 
+        $atts, 
+        'embed_pdf'
+    );
+
+    // Comprueba si la URL se ha proporcionado
+    if (empty($atts['url'])) {
+        return '<p>Por favor, proporciona la URL del PDF.</p>';
+    }
+
+    // Devuelve el código HTML para embeber el PDF
+    return '<div style="overflow: auto;">
+                <embed src="' . esc_url($atts['url']) . '" width="' . esc_attr($atts['width']) . '" height="' . esc_attr($atts['height']) . '" type="application/pdf">
+            </div>';
+}
+
+// Registra el shortcode [embed_pdf]
+add_shortcode('embed_pdf', 'shortcode_embed_pdf');
+
+/**
+********************************************************************************************
+********************************************************************************************
 ***************************** plantilla para COMUNICADOS  **********************************
 ********************************************************************************************
 ********************************************************************************************
@@ -141,8 +176,6 @@ function print_aditionals_comunicados(){
     
     ?>
         <script>
-            console.log("codigo js para comunicados1!!")
-
             // cambia titulo del post
             let title_html = document.querySelector("h3.uagb-heading-text strong");
             title_html.innerHTML = "<?= the_title(); ?>";
@@ -155,7 +188,6 @@ function print_aditionals_comunicados(){
             let img_html = document.querySelector("figure.wp-block-uagb-image__figure img");
             img_html.srcset = '<?= $img_srcset ?>';
             img_html.src = '<?= $url_img_portada ?>';
-
         </script>
     <?php
 }
@@ -164,7 +196,9 @@ function shortcode_print_contenido_comunicado(){
     ob_start();
     ?>
         <div class="content-notice post-content">
-            <?php the_field('contenido_comunicado'); ?>
+
+            <?= the_field('contenido_comunicado'); ?>
+
         </div>
     <?php
     // Capturar el contenido generado
@@ -205,6 +239,34 @@ function shortcode_print_botones_comunicado(){
 
 }
 add_shortcode('botones_comunicado', 'shortcode_print_botones_comunicado');
+
+
+/**
+ * [ADD FILTER]
+ * 
+ * Función para modificar el excerpt de los posts de una categoría específica
+ * para la sección de COMUNICADOS UNAJMA en la página principal
+ */
+function custom_excerpt_for_category_comunicado($excerpt) {
+    global $post;
+
+    // Verifica si el post pertenece a la categoría 'noticia_unajma'
+    if (has_category('avisos-comunicados', $post)) {
+        // Personaliza el excerpt aquí
+        $custom_excerpt = get_field('contenido_comunicado');
+        // Limita el excerpt a 30 palabras (por ejemplo)
+        $custom_excerpt = wp_trim_words($custom_excerpt, 30, '...');
+
+        return $custom_excerpt;
+    }
+
+    // Si el post no pertenece a la categoría, retorna el excerpt original
+    return $excerpt;
+}
+
+// Añade el filtro para modificar el excerpt
+add_filter('the_excerpt', 'custom_excerpt_for_category_comunicado');
+
 
 
 /**
@@ -605,7 +667,7 @@ function shortcode_agenda_actividades($atts) {
         ));
 
         if ($pagination) {
-            echo '<div class="pagination">' . $pagination . '</div>';
+            echo '<div class="pagination-agenda">' . $pagination . '</div>';
         }
     } else {
         echo '<p>No hay posts disponibles.</p>';
@@ -1028,14 +1090,14 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>La Universidad</h5>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Misión y Visión </a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Reseña Histórica </a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Directorio </a>
+                            <a href="https://localhost.localdomain/mision-y-vision/"><i class="fas fa-external-link-alt"></i> Misión y Visión </a>
+                            <a href="https://localhost.localdomain/resena-historica/"><i class="fas fa-external-link-alt"></i> Reseña Histórica </a>
+                            <a href="https://localhost.localdomain/directorio/"><i class="fas fa-external-link-alt"></i> Directorio </a>
                             <a href="#"><i class="fas fa-external-link-alt"></i> Rectorado </a>
                             <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado Académico </a>
                             <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado de Investigación </a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Rendición de Cuentas </a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Organigrama </a>
+                            <a href="https://localhost.localdomain/rendicion-de-cuentas/"><i class="fas fa-external-link-alt"></i> Rendición de Cuentas </a>
+                            <a href="https://localhost.localdomain/organigrama/"><i class="fas fa-external-link-alt"></i> Organigrama </a>
                         </div>
                     </div>
                 </div>
