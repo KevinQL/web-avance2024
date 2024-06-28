@@ -116,19 +116,35 @@ window.onload = function() {
      * ***********************************************************************
      * 
     */
-    // 
-    let element = document.querySelector("div.ast-below-header-wrap");
     
+    // Selecciona el primer elemento <div> con la clase "ast-main-header-wrap"
+    let element = document.querySelector("div.ast-main-header-wrap");
+    
+    // Verifica si el elemento existe
     if(element){
+        // Agrega un evento de escucha para el evento 'scroll' en la ventana
         window.addEventListener('scroll', function(){
+            // Muestra un mensaje en la consola para indicar que se ha activado la función de desplazamiento
             console.log("fn scroll navegacion!!")
+
+            // Establece el estilo del elemento:
+            // Cambia la posición a "relative"
             element.style.position = "relative";
+            // Restablece la propiedad 'top'
             element.style.top = "";
+            // Asegura que el elemento esté visible
             element.style.display = "block";
+            // Establece el ancho del elemento al 100%
             element.style.width = "100%";
+
+            // Si la distancia del elemento desde la parte superior de la página es menor o igual al desplazamiento vertical
             if(element.offsetTop <= window.scrollY){
-                console.log("mover navegacion cabecera!!!")
+                // Muestra un mensaje en la consola para indicar que la cabecera se moverá
+                console.log("mover navegacion cabecera!!!");
+                
+                // Cambia la posición del elemento a "fixed"
                 element.style.position = "fixed";
+                // Establece la propiedad 'top' a 0 para fijar el elemento en la parte superior
                 element.style.top = "0";
             }
         });

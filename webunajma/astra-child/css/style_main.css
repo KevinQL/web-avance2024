@@ -146,8 +146,6 @@ aside.widget .div-fecha-evento{
 
 
 
-
-
 /* 
 * Estilos para la NAVEGACIÓN DE LA PÁGINA Estilos para el mega menu 
 *
@@ -175,6 +173,8 @@ aside.widget .div-fecha-evento{
     display: block;
     padding: 14px 16px;
     text-decoration: none;
+    border: .01px solid transparent;
+    border-bottom: 3px solid transparent;
 	/*Esto permite que el contenido del submenú se mantenga por debajo de la imagen logo de la universdad*/			
     line-height:104px;
 }
@@ -182,6 +182,16 @@ aside.widget .div-fecha-evento{
 .link-nav:hover, .dropdown:hover .link-nav-drop {
     /* background-color: white; */
     color: black;
+    border: .01px solid #eee;
+    border-bottom: 3px solid #334E96;
+}
+
+div.container div.navbar a.link-nav{
+    border: .01px solid transparent;
+    border-bottom: 3px solid transparent;
+}
+div.container div.navbar a.link-nav:hover{
+    border: .01px solid #eee;
 }
 
 .dropdown-content {

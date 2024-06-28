@@ -121,7 +121,7 @@ function shortcode_embed_pdf($atts) {
     // Establece los atributos predeterminados del shortcode
     $atts = shortcode_atts(
         array(
-            'url' => 'https://localhost.localdomain/wp-content/uploads/2024/06/organigrama-2023.pdf', // La URL del PDF
+            'url' => '', // La URL del PDF
             'width' => '100%', // Ancho del PDF embebido
             'height' => '900px', // Alto del PDF embebido
         ), 
@@ -1059,8 +1059,6 @@ function obtener_primer_post_categoria_shortcode( $atts ) {
 // Uso con shotcode ==> [primer_post_categoria categoria="noticias"]
 
 
-
-
 /**
  ************************************************************************** 
  ************************************************************************** 
@@ -1069,6 +1067,19 @@ function obtener_primer_post_categoria_shortcode( $atts ) {
  ************************************************************************** 
  * 
  */
+function get_base_domain() {
+    // Obtiene el esquema (http o https)
+    $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+    
+    // Obtiene el host
+    $host = $_SERVER['HTTP_HOST'];
+    
+    // Construye el dominio base
+    $base_domain = $scheme . "://" . $host;
+    
+    return $base_domain;
+}
+
 function html_nav(){
     ?>
     <!-- MENÚ para Desktop Unajma!!! -->
@@ -1090,14 +1101,14 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>La Universidad</h5>
-                            <a href="https://localhost.localdomain/mision-y-vision/"><i class="fas fa-external-link-alt"></i> Misión y Visión </a>
-                            <a href="https://localhost.localdomain/resena-historica/"><i class="fas fa-external-link-alt"></i> Reseña Histórica </a>
-                            <a href="https://localhost.localdomain/directorio/"><i class="fas fa-external-link-alt"></i> Directorio </a>
+                            <a href="<?= get_base_domain();?>/mision-y-vision/"><i class="fas fa-external-link-alt"></i> Misión y Visión </a>
+                            <a href="<?= get_base_domain();?>/resena-historica/"><i class="fas fa-external-link-alt"></i> Reseña Histórica </a>
+                            <a href="<?= get_base_domain();?>/directorio/"><i class="fas fa-external-link-alt"></i> Directorio </a>
                             <a href="#"><i class="fas fa-external-link-alt"></i> Rectorado </a>
                             <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado Académico </a>
                             <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado de Investigación </a>
-                            <a href="https://localhost.localdomain/rendicion-de-cuentas/"><i class="fas fa-external-link-alt"></i> Rendición de Cuentas </a>
-                            <a href="https://localhost.localdomain/organigrama/"><i class="fas fa-external-link-alt"></i> Organigrama </a>
+                            <a href="<?= get_base_domain();?>/rendicion-de-cuentas/"><i class="fas fa-external-link-alt"></i> Rendición de Cuentas </a>
+                            <a href="<?= get_base_domain();?>/organigrama/"><i class="fas fa-external-link-alt"></i> Organigrama </a>
                         </div>
                     </div>
                 </div>
@@ -1121,8 +1132,8 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>Pregrado</h5>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Facultad de Ingeniería</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Facultad de Ciencias Empresariales</a>
+                            <a href="<?= get_base_domain();?>/facultades/#fingenieria"><i class="fas fa-external-link-alt"></i> Facultad de Ingeniería</a>
+                            <a href="<?= get_base_domain();?>/facultades/"><i class="fas fa-external-link-alt"></i> Facultad de Ciencias Empresariales</a>
                         </div>
                         <!-- <div class="column">
                             <h5>Facultad de Ingeniería</h5>
@@ -1155,7 +1166,7 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>Postgrado</h5>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Maestrías</a>
+                            <a href="<?= get_base_domain();?>/escuela-de-posgrado/"><i class="fas fa-external-link-alt"></i> Maestrías</a>
                             <a href="#"><i class="fas fa-external-link-alt"></i> Doctorados</a>
                         </div>
                     </div>
@@ -1211,9 +1222,9 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>Servicios</h5>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Instituto de Informática</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Centro de Idiomas</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> CEPRE</a>
+                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> Instituto de Informática</a>
+                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> Centro de Idiomas</a>
+                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> CEPRE</a>
                         </div>
                     </div>
                 </div>
