@@ -1,3 +1,25 @@
+/**
+* Estilos de fondo imagen de toda la página
+*/
+#content.site-content{
+    /* background-image: url(/wp-content/uploads/2024/08/square-bg-full-2x-222-scaled.webp); */
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='ffffff' fill-opacity='0.0421'%3E%3Cpath opacity='.8' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: repeat;
+    /* background-size: 200px 200px; */
+    /* background-size: 1440px 2279px; */
+}
+
+/*
+* Custom logo modo responsive para dispositivo
+*/
+@media screen and (max-width: 920px) {
+    header a.custom-logo-link img{
+        max-width: 75%;
+    }
+}
+
 
 /*
  * Estilos para el boton flotante para cambiar colores de la página
@@ -35,7 +57,7 @@
     border: none; 
     padding: 4px 10px; 
     border-radius:3px; 
-    background-color:#334E96; 
+    background-color:#00459A; 
     color:white; 
     display:inline-block; 
     font-size:small; 
@@ -127,15 +149,44 @@ aside.widget .div-fecha-evento{
  * header-content, efecto glassmorphis para la caja de presentación
  * */
  .header-content{
-    /*background: linear-gradient(1deg, rgba(255, 255, 255, 0.04), rgba(51, 78, 150, .48));*/
-    background: linear-gradient(1deg, rgba(255, 255, 255, 0.04), rgb(238 238 238 / 60%));
-    backdrop-filter: blur(3px)!important;
-    -webkit-backdrop-filter: blur(3px)!important;
+    /* box-shadow: 0px 0px var(--ast-global-color-5); */
+    /*background: linear-gradient(1deg, rgba(255, 255, 255, 0.04), rgba(51, 78, 150, .48));
+    linear-gradient(1deg, rgba(255, 255, 255, 0.04), rgb(49 48 48 / 14%))
+    
+    linear-gradient(1deg, rgba(255, 255, 255, 0.04), rgb(124 160 187 / 14%))
+    */
+    background: linear-gradient(1deg, rgba(255, 255, 255, 0.04), rgb(124 160 187 / 14%));
+    backdrop-filter: blur(4px)!important;
+    -webkit-backdrop-filter: blur(4px)!important;
     border-radius: 13px!important;
     border: 1px solid rgba(255, 255, 255, 1)!important;
-    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
 }
-    
+
+
+
+
+.header-content p {
+    font-size: 17.3px !important;
+    font-weight: 400 !important;
+    padding: 0p;  /*8px 8px*/
+    border-radius: 10px;
+    /* background: #00000012;
+	backdrop-filter: blur(6px)!important; */
+	/* filter: brightness(100%); */
+}
+
+/* Se configuró en el panel de wp con 80px de margin bottom, para controlar que en dispositivos con pantallas más pequeñas el header-content no se pegue hacia el borde abajo.  */
+@media screen and (min-height: 1150px) {
+    div.wp-block-uagb-container.header-content {
+      margin-bottom: 0px !important;  /* Reestablecemos el valor a cero, para que el margin-top haga efecto. En este caso, el margin top es 330px, el cual se configuró en el panel de wp; */
+      /* border: 1px solid red !important; */
+    }
+  }
+
     
 /*
     * Modificando el botton de la seccion de linea de tiempo. En lña sección de Agenda y Actividades
@@ -159,24 +210,27 @@ aside.widget .div-fecha-evento{
 .navbar {
     background-color: transparent;
     font-family: "Poppins", sans-serif;
-
     display: flex;
     flex-wrap: wrap;
 }
 
 .link-nav, .column-link{
     text-align: center;
-	font-family: "Poppins", sans-serif;
-    font-size: 15px;
-	font-weight: 400;
-    color: #1D2130;
+	/* font-family: "Barlow"; */
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+	font-weight: 300;
+    /* color: #1D2130 !important; */
+    color: #575960 !important;
     display: block;
     padding: 14px 16px;
     text-decoration: none;
     border: .01px solid transparent;
     border-bottom: 3px solid transparent;
 	/*Esto permite que el contenido del submenú se mantenga por debajo de la imagen logo de la universdad*/			
-    line-height:104px;
+    line-height: 40px; /* 104px*/
+    margin-top: 30px; /* Se agrega esta propiedad para alinear el navegador al nuevo logo pasado*/
+    
 }
 
 .link-nav:hover, .dropdown:hover .link-nav-drop {
@@ -208,7 +262,7 @@ div.container div.navbar a.link-nav:hover{
 }
 
 .dropdown-content .header {
-    background: #334E96;
+    background: #00459A;
     padding: 16px;
 	border-radius: 4px;
     color: white;
@@ -216,6 +270,8 @@ div.container div.navbar a.link-nav:hover{
 
 .dropdown-content .header h3{
     color:white;
+    /* font-family: "Thicker-Black-trial"; */
+    font-family: "Barlow";
 }
 
 span.link-nav{
@@ -251,6 +307,7 @@ span.link-nav{
     margin: 10px;
     margin-bottom: 15px;
     padding-bottom: 5px;
+    font-family: "Barlow";
 }
 
 .column a i{
@@ -275,7 +332,7 @@ span.link-nav{
     color: #111111;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+/* Responsive layout - hace que las tres columnas se apilen una encima de la otra en lugar de una al lado de la otra*/
 @media screen and (min-width: 1025px) and (max-width: 1174px) {
     /* Aplicar estilos cuando el ancho de la pantalla esté entre 600px y 1174px */
     .navbar {
@@ -296,6 +353,10 @@ span.link-nav{
 }
 
 @media screen and (max-width: 920px) {
+    .link-nav, .column-link{
+        margin-top: 1px;  /*Esto se utiliza para controlar el margen de 30px que se usa en el nav para dispoitivos de escritorio*/
+    }
+
     .dropdown, .link-nav{
         display: block;
         width: 100vw;
@@ -692,6 +753,13 @@ span.card-detalle_titulo {
     height: auto; /* Mantiene la proporción de las imágenes */
     display: block; /* Centra las imágenes */
     margin: 1.5em auto; /* Espaciado superior e inferior y centrado automático */
+    border: 1px solid #fff;;
+    border-radius: 18px;
+}
+.content-notice.post-content iframe{
+    display: block;
+    margin: auto;
+    border-radius: 11px;
 }
 
 /* Estilos responsivos */
@@ -776,6 +844,10 @@ div.content-btn-comunicados a.btn-comunicados:hover{
 ********************************************************************************************
 *
 */
+.barlow{
+    font-family: "Barlow" !important;
+    font-weight: 300 !important;
+}
 
 .parrafo-to-mision-vision{
 	line-height:2;
@@ -792,6 +864,49 @@ div.content-btn-comunicados a.btn-comunicados:hover{
     color: #333; /* Color de texto oscuro para un buen contraste */
 }
 
+/**
+********************************************************************************************
+********************************************************************************************
+************************* Estilos para facultades *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+
+/* .barlow-facultades{
+    font-size: 16px !important;
+    color: #50575e !important;
+} */
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************* Estilos para Reseña Historica *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+.content-resenah
+{
+    background-color: #f9f9f9; /* Fondo claro para reducir la fatiga visual */
+	padding: 30px 70px !important;
+	border-radius: 8px;
+}
+
+.content-resenah p
+{
+    color: #333; 
+	margin: 0px;
+	padding: 0px;
+	font-style: normal;
+	font-weight: 100;
+	font-size: 18px;	
+	text-align: justify;
+	line-height:2;
+	word-spacing: 1.2px;
+	
+}
 
 /**
 ********************************************************************************************
@@ -839,4 +954,86 @@ figure.wp-block-table table tbody tr td a:hover{
 	color: black;
 	font-weight: 300;
 	border: 1px solid #222;
+}
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************* Estilos para convocatoria personal *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+
+/* ".infobox-convocatori" es una clase creada en el panel de wordpress*/
+.infobox-convocatoria .uagb-iconbox-icon-wrap.uagb-infobox-shape-squre {
+    border-radius: 15px
+}
+
+
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************* Estilos para categoria *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+.category-page {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-top:30px;
+    margin-bottom:30px;
+    border-radius: 18px;
+}
+
+.category-page h1 {
+    color: #333;
+    text-align: center;
+    padding: 30px 15px;
+    text-transform: uppercase;
+    padding-bottom: 40px;
+    font-family: "Thicker-Black-trial";
+}
+
+.category-page .post {
+    margin-bottom: 15px;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.category-page .post h2 a {
+    display: block;
+    color: #00459A;
+    text-decoration: none;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    font-family: "Barlow";
+}
+
+.category-page .post h2 a:hover {
+    color: #000000;
+}
+
+.row-category
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+}
+
+.row-category > .post{
+    display: block;
+    width: 30%;
+}
+
+.content-btn{
+    padding: 30px;
+    text-align: center;
 }

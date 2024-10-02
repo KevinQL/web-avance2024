@@ -104,8 +104,141 @@ add_shortcode('print-carrusel-img-arr', 'print_carrusel_img_enlaces_arr');
 add_action('uagb_single_post_after_meta_timeline', 'atr_modificar_texto',10,2);
 add_action('wp_footer', 'obtener_ultima_img_post_v2');
 
-add_shortcode('btn_color', 'bn_cambiar_color_pagina');
+// add_shortcode('btn_color', 'bn_cambiar_color_pagina');
+// Se usa en la vista de la página principal de la págian, a traves de un elemento shortcode: [btn_color]
 
+
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************** codigo para Convocatoria Prácticas *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+function print_aditionals_convocatoria_practicas(){
+
+    $estado_convocatoria = get_field("estado_convocatoria_practicas");
+    $text_estado = $estado_convocatoria ? "<span style='color:#198754; font-size:x-large; display: block'>(vigente)</span>":"";
+    ?>
+        <script>
+            // cambia titulo del post
+            let title_html = document.querySelector("h3.uagb-heading-text");
+            title_html.innerHTML = "<?= the_title(); ?> <?= $text_estado; ?>";
+
+        </script>
+    <?php
+}
+
+function shortcode_print_contenido_convocatoria_practicas(){
+    ob_start();
+    ?>
+        <div class="content-notice post-content">
+
+            <?= the_field('detalle_convocatoria_practicas'); ?>
+
+        </div>
+    <?php
+    // Capturar el contenido generado
+    $contenido = ob_get_clean();
+
+    // Coloca el titulo de la página con js
+    add_action('wp_footer', 'print_aditionals_convocatoria_practicas');
+
+    // Devolver el contenido generado
+    return $contenido;
+}
+add_shortcode('detalle_convocatoria_practicas', 'shortcode_print_contenido_convocatoria_practicas');
+
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************** codigo para Convocatoria 276 Y CAS *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+function print_aditionals_convocatoria_276_cas(){
+
+    $estado_convocatoria = get_field("estado_convocatoria_276_cas");
+    $text_estado = $estado_convocatoria ? "<span style='color:#198754; font-size:x-large; display: block'>(vigente)</span>":"";
+    ?>
+        <script>
+            // cambia titulo del post
+            let title_html = document.querySelector("h3.uagb-heading-text");
+            title_html.innerHTML = "<?= the_title(); ?> <?= $text_estado; ?>";
+
+        </script>
+    <?php
+}
+
+function shortcode_print_contenido_convocatoria_276_cas(){
+    ob_start();
+    ?>
+        <div class="content-notice post-content">
+
+            <?= the_field('detalle_convocatoria_276_cas'); ?>
+
+        </div>
+    <?php
+    // Capturar el contenido generado
+    $contenido = ob_get_clean();
+
+    // Coloca el titulo de la página con js
+    add_action('wp_footer', 'print_aditionals_convocatoria_276_cas');
+
+    // Devolver el contenido generado
+    return $contenido;
+}
+add_shortcode('detalle_convocatoria_276_cas', 'shortcode_print_contenido_convocatoria_276_cas');
+
+
+
+/**
+********************************************************************************************
+********************************************************************************************
+************************** codigo para Convocatoria docentes *******************************
+********************************************************************************************
+********************************************************************************************
+*
+*/
+function print_aditionals_convocatoria_docente(){
+
+    $estado_convocatoria = get_field("estado_convocatoria_docente");
+    $text_estado = $estado_convocatoria ? "<span style='color:#198754; font-size:x-large; display: block'>(vigente)</span>":"";
+    ?>
+        <script>
+            // cambia titulo del post
+            let title_html = document.querySelector("h3.uagb-heading-text");
+            title_html.innerHTML = "<?= the_title(); ?> <?= $text_estado; ?>";
+
+        </script>
+    <?php
+}
+
+function shortcode_print_contenido_convocatoria_docente(){
+    ob_start();
+    ?>
+        <div class="content-notice post-content">
+
+            <?= the_field('detalle_convocatoria_docente'); ?>
+
+        </div>
+    <?php
+    // Capturar el contenido generado
+    $contenido = ob_get_clean();
+
+    // Coloca el titulo de la página con js
+    add_action('wp_footer', 'print_aditionals_convocatoria_docente');
+
+    // Devolver el contenido generado
+    return $contenido;
+}
+add_shortcode('detalle_convocatoria_docente', 'shortcode_print_contenido_convocatoria_docente');
 
 
 /**
@@ -177,11 +310,11 @@ function print_aditionals_comunicados(){
     ?>
         <script>
             // cambia titulo del post
-            let title_html = document.querySelector("h3.uagb-heading-text strong");
+            let title_html = document.querySelector("h3.uagb-heading-text");
             title_html.innerHTML = "<?= the_title(); ?>";
 
             // cambia ultimo texto
-            let parrafo_html = document.querySelector("P.parrafo-entrada strong");
+            let parrafo_html = document.querySelector("p.parrafo-entrada strong");
             parrafo_html.innerHTML = "<em><?= the_field('ultimo_texto_comunicado'); ?></em>";
 
             // cambia imagen del post
@@ -303,14 +436,14 @@ add_filter('the_excerpt', 'custom_excerpt_for_category_evento');
  * Función para modificar el excerpt de los posts de una categoría específica
  * para la sección de NOTICIAS UNAJMA en la página principal
  */
-function custom_excerpt_for_category_noticia($excerpt) {
+function custom_excerpt_for_category_noticia_unajma($excerpt) {
     global $post;
 
     // Verifica si el post pertenece a la categoría 'noticia_unajma'
-    if (has_category('noticias', $post)) {
+    if (has_category('noticias-unajma', $post)) {
         // Personaliza el excerpt aquí
         // Por ejemplo, podrías agregar un prefijo al excerpt
-        $custom_excerpt = get_field('contenido_noticia');
+        $custom_excerpt = get_field('contenido_noticia_unajma');
 
         // Opcionalmente, también podrías limitar la longitud del excerpt
         // Limita el excerpt a 30 palabras (por ejemplo)
@@ -324,8 +457,7 @@ function custom_excerpt_for_category_noticia($excerpt) {
 }
 
 // Añade el filtro para modificar el excerpt
-add_filter('the_excerpt', 'custom_excerpt_for_category_noticia');
-
+add_filter('the_excerpt', 'custom_excerpt_for_category_noticia_unajma');
 
 
 
@@ -345,23 +477,30 @@ function set_default_date($value, $post_id, $field) {
 }
 
 // Reemplazar 'fecha_noticia' o con el nombre del campo adecuado. La acción se realiza para cada campo
-add_filter('acf/load_value/name=fecha_noticia', 'set_default_date', 10, 3);
+add_filter('acf/load_value/name=fecha_noticia_unajma', 'set_default_date', 10, 3);
 add_filter('acf/load_value/name=fecha_comunicado', 'set_default_date', 10, 3);
 
+
+
+
+//----------------------------------------------- INICIO
+//----------------------------------------------- INICIO
+//----------------------------------------------- INICIO
+//----------------------------------------------- INICIO
 
 /**
  * 
  * 
- * Funciones para la sección de NOTICIAS
+ * Funciones para la sección de NOTICIAS UNAJMAAA V2
  * 
  */
-function shortcode_print_data_noticia(){
+function shortcode_print_data_noticia_unajma(){
 
     ob_start();
     ?>
         <div class="data-notice">
-            <p><?= the_field('redactor_unajma'); ?> | Redactor Personal De Unajma</p>
-            <p><?= the_field('fecha_noticia'); ?> - <?= the_field('tiempo_lectura_noticia'); ?> de lectura.</p>
+            <p><?= the_field('redactor_noticia_unajma'); ?> | Redactor Personal De Unajma</p>
+            <p><?= the_field('fecha_noticia_unajma'); ?> - <?= the_field('tiempo_lecture_noticia'); ?> de lectura.</p>
             <div class="separator-notice"></div>
         </div>
     <?php
@@ -371,9 +510,9 @@ function shortcode_print_data_noticia(){
     // Devolver el contenido generado
     return $contenido;
 }
-add_shortcode('data_noticia', 'shortcode_print_data_noticia');
+add_shortcode('data_noticia_unajma', 'shortcode_print_data_noticia_unajma');
 
-function print_details_noticias(){
+function print_details_noticias_unajma(){
     
     //obtiene la img de la portada del post
     $url_img_portada = get_the_post_thumbnail_url();
@@ -386,7 +525,7 @@ function print_details_noticias(){
             title_html.innerHTML = "<?= the_title(); ?>";
 
             // cambia ultimo texto
-            let parrafo_html = document.querySelector("P.parrafo-entrada strong");
+            let parrafo_html = document.querySelector("p.parrafo-entrada strong");
             parrafo_html.innerHTML = "<em><?= the_field('ultimo_texto_noticia'); ?></em>";
 
             // cambia imagen del post
@@ -399,16 +538,12 @@ function print_details_noticias(){
     <?php
 }
 
-function shortcode_print_details_noticia(){
+function shortcode_print_details_noticia_unajma(){
 
     ob_start();
     ?>
         <div class="content-notice post-content">
-            <?php the_field('contenido_noticia'); ?>
-            <p>
-                <!-- --- probando función -->
-                <?= obtener_extracto_de_campo_personalizado('contenido_noticia', 150); ?> 
-            </p>
+            <?php the_field('contenido_noticia_unajma'); ?>
         </div>
 
 
@@ -417,13 +552,17 @@ function shortcode_print_details_noticia(){
     $contenido = ob_get_clean();
 
     // Agregando linnk Y otros. Revizar función
-    add_action('wp_footer', 'print_details_noticias');
+    add_action('wp_footer', 'print_details_noticias_unajma');
 
     // Devolver el contenido generado
     return $contenido;
 }
-add_shortcode('detalles_noticia', 'shortcode_print_details_noticia');
+add_shortcode('detalles_noticia_unajma', 'shortcode_print_details_noticia_unajma');
 
+//----------------------------------------------- FIN
+//----------------------------------------------- FIN
+//----------------------------------------------- FIN
+//----------------------------------------------- FIN
 
 
 
@@ -471,8 +610,17 @@ function shortcode_print_content_evento(){
     ?>
         <div class="content-notice post-content">
             <?php 
-            // Imprime el valor del campo personalizado 'contenido_evento'
-            the_field('contenido_evento'); ?>
+                // Obtener el contenido del campo personalizado 'contenido_evento'
+                $conten_event = get_field('contenido_evento');
+                // Verificar si el contenido contiene un iframe
+                if(strpos($conten_event,"<iframe") != false){
+                    // Imprime el valor del campo personalizado 'contenido_evento'
+                    echo $conten_event;
+                }else{
+                    // Imprime el valor del campo personalizado 'contenido_evento'
+                    the_field('contenido_evento'); 
+                }
+            ?>
         </div>
     <?php
     // Captura el contenido generado y limpia el buffer de salida
@@ -542,7 +690,7 @@ function shortcode_print_title_agenda_actividades(){
             <div class="card-detalles-evento">
                 <div class="card-detalle">
                     <span class="card-detalle_titulo">fecha: </span> 
-                    <span class="card-detalle_value"><?php the_field('fecha_evento'); ?></span>
+                    <span class="card-detalle_value"><?php the_field('fecha_evento'); ?> - <?php the_field('fecha_fin_evento'); ?></span>
                 </div>
                 <div class="card-detalle">
                     <span class="card-detalle_titulo">Hora: </span> 
@@ -553,11 +701,11 @@ function shortcode_print_title_agenda_actividades(){
                     <span class="card-detalle_value"><?php the_field('hora_evento'); ?></span>
                 </div>
                 <div class="card-detalle">
-                    <span class="card-detalle_titulo">Inversión: </span> 
+                    <span class="card-detalle_titulo">Inversión: </span>
                     <span class="card-detalle_value"><?php the_field('inversion_evento'); ?></span>
                 </div>
                 <div class="card-detalle">
-                    <span class="card-detalle_titulo">Dirigido a: </span> 
+                    <span class="card-detalle_titulo">Dirigido a: </span>
                     <span class="card-detalle_value"><?php the_field('dirigido_a_evento'); ?></span>
                 </div>
                 
@@ -586,12 +734,14 @@ add_shortcode('print_text_agenda', 'shortcode_print_title_agenda_actividades');
 /**
  * [SHORTCODE]
  * 
- * Imprime los post de agenda y actividades conforme el diseño pasado en el canva
+ * Shortcode para mostrar posts de la categoría "agenda-actividades" con paginación.
  * Se utiliza en la pagina principal de "agenda y actividades"
- * 
+ *
+ * @param array $atts Atributos del shortcode.
+ * @return string Contenido HTML generado por el shortcode.
  */
 function shortcode_agenda_actividades($atts) {
-    // Atributos por defecto
+    // Establece los atributos por defecto del shortcode
     $atts = shortcode_atts(
         array(
             'posts_per_page' => 3, // Número de posts por página
@@ -605,6 +755,7 @@ function shortcode_agenda_actividades($atts) {
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
     // Query de los posts
+    // Argumentos para la consulta de posts
     $query_args = array(
         'post_type' => 'post', // Tipo de post
         'posts_per_page' => intval($atts['posts_per_page']),
@@ -613,16 +764,16 @@ function shortcode_agenda_actividades($atts) {
     );
     $query = new WP_Query($query_args);
 
-    // Iniciar el output buffer
+    // Iniciar el buffer de salida
     ob_start();
 
     if ($query->have_posts()) {
-
+        // Inicia el contenedor de los posts
         echo '<div class="posts-timeline">';
 
         while ($query->have_posts()) {
             $query->the_post();
-            //obtiene la img del ultimo post de evento y agenda
+            // Obtiene la URL de la imagen destacada del post actual
             $url_img_portada = get_the_post_thumbnail_url();
 
             ?>
@@ -638,8 +789,8 @@ function shortcode_agenda_actividades($atts) {
                         <a href="<?= get_permalink(); ?> "><?= get_the_title(); ?></a> <br>
                         <span><?php the_field('lugar_evento'); ?></span>
                     </h2>
-                    <p>
-                        <?= obtener_extracto_personalizado(250); ?> 
+                    <p>                  
+                        <?= obtener_extracto_de_campo_personalizado("contenido_evento", 150); ?> 
                     </p>
                 </div>
                 <div class="post-column post-imagen">
@@ -670,6 +821,7 @@ function shortcode_agenda_actividades($atts) {
             echo '<div class="pagination-agenda">' . $pagination . '</div>';
         }
     } else {
+        // Mensaje si no hay posts disponibles
         echo '<p>No hay posts disponibles.</p>';
     }
 
@@ -687,51 +839,66 @@ add_shortcode('agenda_actividades', 'shortcode_agenda_actividades');
 /**
  * [FUNCTION]
  * 
- * Obtiene un extracto de longitud específica.
+ * Obtener un extracto personalizado del contenido del post
  *
- * @param int $length Longitud del extracto en caracteres.
- * @return string El extracto truncado.
+ * Esta función obtiene el contenido del post actual, elimina las etiquetas HTML,
+ * trunca el contenido a una longitud especificada y devuelve el extracto resultante.
+ *
+ * @param int $length La longitud máxima del extracto a devolver (por defecto 350 caracteres).
+ * @return string El extracto truncado y sin etiquetas HTML del contenido del post.
  */
 function obtener_extracto_personalizado($length = 350) {
+    // Hace referencia al objeto global $post
     global $post;
     
-    // Obtener el contenido del post
+    // Obtiene el contenido completo del post actual
     $excerpt = get_the_content();
     
-    // Quitar etiquetas HTML
+    // Elimina las etiquetas HTML del contenido obtenido
     $excerpt = strip_tags($excerpt);
     
-    // Truncar el contenido a la longitud especificada
+    // Trunca el contenido si su longitud excede el valor especificado
     if (strlen($excerpt) > $length) {
+        // Corta el contenido a la longitud especificada y añade '...'
         $excerpt = substr($excerpt, 0, $length) . '...';
     }
 
+    // Devuelve el extracto procesado
     return $excerpt;
 }
+
 
 
 /**
  * [FUNCTION]
  * 
- * Obtiene un extracto de longitud específica.
+ * Obtener un extracto de un campo personalizado
  *
- * @param int $length Longitud del extracto en caracteres.
- * @return string El extracto truncado.
+ * Esta función obtiene el contenido de un campo personalizado de un post,
+ * elimina las etiquetas HTML, trunca el contenido a una longitud especificada
+ * y devuelve el extracto resultante.
+ *
+ * @param string $campo_name El nombre del campo personalizado a obtener.
+ * @param int $length La longitud máxima del extracto a devolver (por defecto 350 caracteres).
+ * @return string El extracto truncado y sin etiquetas HTML del campo personalizado.
  */
 function obtener_extracto_de_campo_personalizado($campo_name, $length = 350) {
+    // Hace referencia al objeto global $post
     global $post;
     
-    // Obtener el contenido del post
+    // Obtiene el contenido del campo personalizado especificado
     $excerpt = get_field($campo_name);
     
-    // Quitar etiquetas HTML
+    // Elimina las etiquetas HTML del contenido obtenido
     $excerpt = strip_tags($excerpt);
     
-    // Truncar el contenido a la longitud especificada
+    // Trunca el contenido si su longitud excede el valor especificado
     if (strlen($excerpt) > $length) {
+        // Corta el contenido a la longitud especificada y añade '...'
         $excerpt = substr($excerpt, 0, $length) . '...';
     }
 
+    // Devuelve el extracto procesado
     return $excerpt;
 }
 
@@ -784,10 +951,6 @@ function obtener_extracto_de_campo_personalizado($campo_name, $length = 350) {
     </div>
 
     <?php
-
-    // Agregar scripts JavaScript para el carrusel (si es necesario)
-    // Aquí puedes agregar tus scripts JavaScript necesarios para el carrusel
-
 
     // Capturar el contenido generado
     $contenido = ob_get_clean();
@@ -1091,30 +1254,37 @@ function html_nav(){
                     <i class="fa fa-caret-down"></i>
                 </a> -->
                 <span class="link-nav link-nav-drop">
-                    La Universidad
+                    La universidad
                     <i class="fas fa-arrow-circle-down"></i>
                 </span>
                 <div class="dropdown-content">
                     <div class="header">
-                        <h3>La Universidad</h3>
+                        <h3>La universidad</h3>
                     </div>   
                     <div class="row">
                         <div class="column">
-                            <h5>La Universidad</h5>
-                            <a href="<?= get_base_domain();?>/mision-y-vision/"><i class="fas fa-external-link-alt"></i> Misión y Visión </a>
-                            <a href="<?= get_base_domain();?>/resena-historica/"><i class="fas fa-external-link-alt"></i> Reseña Histórica </a>
+                            <h5>La universidad</h5> 
+                            <a href="<?= get_base_domain();?>/mision-y-vision/"><i class="fas fa-external-link-alt"></i> Misión y visión </a>
+                            <a href="<?= get_base_domain();?>/resena-historica/"><i class="fas fa-external-link-alt"></i> Reseña histórica </a>
+                            <a href="<?= get_base_domain();?>/comite-electoral-universitario/"><i class="fas fa-external-link-alt"></i> Comité Electoral </a>
+                            <!-- <a href="<?= get_base_domain();?>/asamblea-universitaria/"><i class="fas fa-external-link-alt"></i> Asamblea Universitaria </a> -->
                             <a href="<?= get_base_domain();?>/directorio/"><i class="fas fa-external-link-alt"></i> Directorio </a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Rectorado </a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado Académico </a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado de Investigación </a>
-                            <a href="<?= get_base_domain();?>/rendicion-de-cuentas/"><i class="fas fa-external-link-alt"></i> Rendición de Cuentas </a>
+                            <!-- <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado Académico </a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Vicerrectorado de Investigación </a> -->
+                            <a href="<?= get_base_domain();?>/rendicion-de-cuentas/"><i class="fas fa-external-link-alt"></i> Rendición de cuentas </a>
                             <a href="<?= get_base_domain();?>/organigrama/"><i class="fas fa-external-link-alt"></i> Organigrama </a>
+                        </div>
+                        <div class="column">
+                            <h5>Órganos de gobierno</h5>
+                            <!-- <a href="<?= get_base_domain();?>/rectorado/"><i class="fas fa-external-link-alt"></i> Rectorado </a> -->
+                            <a href="<?= get_base_domain();?>/asamblea-universitaria/"><i class="fas fa-external-link-alt"></i> Asamblea Universitaria </a>
+                            <a href="<?= get_base_domain();?>/consejo-universitario/"><i class="fas fa-external-link-alt"></i> Consejo Universitario </a>
                         </div>
                     </div>
                 </div>
             </div> 
 
-            <a href="#news" class="link-nav">Admisión</a>
+            <a href="http://admision.unajma.edu.pe/" class="link-nav">Admisión</a>
 
             <div class="dropdown">
                 <!-- <a href="#" class="link-nav link-nav-drop">
@@ -1132,8 +1302,8 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>Pregrado</h5>
-                            <a href="<?= get_base_domain();?>/facultades/#fingenieria"><i class="fas fa-external-link-alt"></i> Facultad de Ingeniería</a>
-                            <a href="<?= get_base_domain();?>/facultades/"><i class="fas fa-external-link-alt"></i> Facultad de Ciencias Empresariales</a>
+                            <a href="<?= get_base_domain();?>/facultades/#fingenieria"><i class="fas fa-external-link-alt"></i> Facultad de ingeniería</a>
+                            <a href="<?= get_base_domain();?>/facultades/"><i class="fas fa-external-link-alt"></i> Facultad de ciencias empresariales</a>
                         </div>
                         <!-- <div class="column">
                             <h5>Facultad de Ingeniería</h5>
@@ -1151,32 +1321,24 @@ function html_nav(){
                 </div>
             </div> 
             <div class="dropdown">
-                <!-- <a href="#" class="link-nav link-nav-drop">
-                    Postgrado +
-                    <i class="fa fa-caret-down"></i>
-                </a> -->
                 <span href="#" class="link-nav link-nav-drop">
-                    Postgrado
+                    Posgrado
                     <i class="fas fa-arrow-circle-down"></i>
                 </span>
                 <div class="dropdown-content">
                     <div class="header">
-                        <h3>Postgrado</h3>
+                        <h3>Posgrado</h3>
                     </div>   
                     <div class="row">
                         <div class="column">
-                            <h5>Postgrado</h5>
+                            <h5>Posgrado</h5>
                             <a href="<?= get_base_domain();?>/escuela-de-posgrado/"><i class="fas fa-external-link-alt"></i> Maestrías</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Doctorados</a>
+                            <!-- <a href="#"><i class="fas fa-external-link-alt"></i> Doctorados</a> -->
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="dropdown">
-                <!-- <a href="#" class="link-nav link-nav-drop">
-                    Investigación +
-                    <i class="fa fa-caret-down"></i>
-                </a> -->
                 <span href="#" class="link-nav link-nav-drop">
                     Investigación
                     <i class="fas fa-arrow-circle-down"></i>
@@ -1188,29 +1350,26 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>Investigación</h5>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Publicaciones</a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Producción científica</a>
+                            <a href="<?= get_base_domain();?>/acerca-de-nosotros/"><i class="fas fa-external-link-alt"></i> Acerca de nosotros</a>
+                            <a href="<?= get_base_domain();?>/docentes-investigadores-investigacion/"><i class="fas fa-external-link-alt"></i> Docentes investigadores</a>
+                            <a href="<?= get_base_domain();?>/reglamentos-investigacion/"><i class="fas fa-external-link-alt"></i> Reglamentos</a>
                         </div>
-                        <!-- <div class="column">
+                        <div class="column">
                             <h5>Publicaciones</h5>
-                            <a href="#">Repositorio Institucional</a>
-                            <a href="#">Biblioteca Virtual</a>
-                            <a href="#">Revistas</a>
+                            <a href="https://repositorio.unajma.edu.pe/" target="_blank"><i class="fas fa-external-link-alt"></i> Repositorio institucional</a>
+                            <a href="http://bibliotecavirtual.unajma.edu.pe/" target="_blank"><i class="fas fa-external-link-alt"></i> Biblioteca virtual</a>
+                            <a href="<?= get_base_domain();?>/revistas-en-educacion/"><i class="fas fa-external-link-alt"></i> Revistas</a>
                         </div>
                         <div class="column">
                             <h5>Producción Científica</h5>
-                            <a href="#">Proyectos de Investigación</a>
-                            <a href="#">Convocatorias de Proyectos</a>
-                        </div> -->
+                            <a href="<?= get_base_domain();?>/proyectos-de-investigacion/"><i class="fas fa-external-link-alt"></i> Proyectos de investigación</a>
+                            <a href="<?= get_base_domain();?>/convocatoria-proyectos-de-investigacion/"><i class="fas fa-external-link-alt"></i> Convocatorias de proyectos</a>
+                        </div>
                     </div>
                 </div>
             </div> 
     
             <div class="dropdown">
-                <!-- <a href="#" class="link-nav link-nav-drop">
-                    Servicios +
-                    <i class="fa fa-caret-down"></i>
-                </a> -->
                 <span href="#" class="link-nav link-nav-drop">
                     Servicios
                     <i class="fas fa-arrow-circle-down"></i>
@@ -1222,9 +1381,9 @@ function html_nav(){
                     <div class="row">
                         <div class="column">
                             <h5>Servicios</h5>
-                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> Instituto de Informática</a>
-                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> Centro de Idiomas</a>
-                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> CEPRE</a>
+                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> Instituto de informática</a>
+                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> Centro de idiomas</a>
+                            <a href="<?= get_base_domain();?>/direccion-de-produccion-de-bienes-y-servicios/"><i class="fas fa-external-link-alt"></i> Cepre</a>
                         </div>
                     </div>
                 </div>
